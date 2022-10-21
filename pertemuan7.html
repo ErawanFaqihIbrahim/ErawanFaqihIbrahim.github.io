@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5026211001 | Erawan Faqih Ibrahim</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #errorNrp,
+        #errorNip,
+        #errorNama {
+            color: maroon !important;
+        }
+    </style>
+</head>
+
+<body
+    style="background-image:url(https://www.teahub.io/photos/full/1-13372_-s-desktop-pastel-wallpaper-hd.jpg);">>
+    <div class="container mx-auto">
+        <div class="jumbotron m-auto mt-lg-5 w-50 p-lg-5 h-60" style="background-color:rgb(238, 249, 226) ;">
+            <h3>Pilih Peran Anda</h3>
+            <div class="form-check form-check-inline my-4">
+                <input class="form-check-input" type="radio" name="pilih_role" id="dosen" value="dosen"
+                    onchange="toggleDosenMahasiswa()" checked autocomplete="off">
+                <label class="form-check-label" for="dosen">Dosen</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pilih_role" id="mahasiswa" value="mahasiswa"
+                    onchange="toggleDosenMahasiswa()" autocomplete="off">
+                <label class="form-check-label" for="mahasiswa">Mahasiswa</label>
+            </div>
+            <form action="https://www.google.com" method="get" onsubmit="return validasi()">
+                <div class="form-group row">
+                    <label for="nip" class="col-sm-2 col-form-label">NIP :</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nip" placeholder="Masukkan 10 Digit NIP"
+                            autocomplete="off">
+                    </div>
+                    <div class="col-auto">
+                        <label id="errorNip" for="nip" class="col-form-label"></label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="nrp" class="col-sm-2 col-form-label">NRP :</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nrp" placeholder="Masukkan 10 Digit NRP" disabled
+                            autocomplete="off">
+                    </div>
+                    <div class="col-auto">
+                        <label id="errorNrp" for="nrp" class="col-form-label"></label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="nama" class="col-sm-2 col-form-label">Nama :</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama Anda"
+                            autocomplete="off">
+                    </div>
+                    <div class="col-auto">
+                        <label id="errorNama" for="nama" class="col-form-label"></label>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function toggleDosenMahasiswa() {
+            var radioDosen = document.getElementById("dosen")
+            var inputNip = document.getElementById("nip")
+            var inputNrp = document.getElementById("nrp")
+
+            var errorNip = document.getElementById("errorNip")
+            var errorNrp = document.getElementById("errorNrp")
+            var errorNama = document.getElementById("errorNama")
+
+            errorNip.innerHTML = ""
+            errorNrp.innerHTML = ""
+            errorNama.innerHTML = ""
+
+            if (radioDosen.checked) {
+                inputNip.disabled = false
+                inputNrp.disabled = true
+                inputNip.focus()
+            } else {
+                inputNrp.disabled = false
+                inputNip.disabled = true
+                inputNrp.focus()
+            }
+        }
+
+        function validasi() {
+            var validation = true
+
+            var radioDosen = document.getElementById("dosen")
+            var radioMahasiswa = document.getElementById("mahasiswa")
+            var inputNip = (radioDosen.checked) ? document.getElementById("nip") : null;
+            var inputNrp = (radioMahasiswa.checked) ? document.getElementById("nrp") : null;
+            var inputNama = document.getElementById("nama")
+            var errorNip = document.getElementById("errorNip")
+            var errorNrp = document.getElementById("errorNrp")
+            var errorNama = document.getElementById("errorNama")
+
+            errorNip.innerHTML = ""
+            errorNrp.innerHTML = ""
+            errorNama.innerHTML = ""
+
+            // NIP
+            /*if (inputNip) {
+                var nipSplitted = inputNip.value.split(" ")
+                var nip = nipSplitted.join("")*/
+
+                // Tidak boleh kosong
+                if (inputNip.value.length <= 0) {
+                    errorNip.innerHTML += "NIP tidak boleh kosong<br />"
+                    validation = false
+                }
+                // Tidak boleh berisi huruf
+                if (isNaN(nip)) {
+                    errorNip.innerHTML += "NIP tidak boleh berisi huruf<br />"
+                    validation = false
+                }
+
+                // harus 10 digit
+                if (inputNip.value.length != 10) {
+                    errorNip.innerHTML += "format NIP salah<br />"
+                    validation = false
+                }
+            }
+
+            // NRP
+            if (inputNrp) {
+                // Tidak boleh kosong
+                if (inputNrp.value.length <= 0) {
+                    errorNrp.innerHTML += "NRP tidak boleh kosong<br />"
+                    validation = false
+                }
+                // Tidak boleh berisi huruf
+                if (isNaN(inputNrp.value)) {
+                    errorNrp.innerHTML += "NRP tidak boleh berisi huruf<br />"
+                    validation = false
+                }
+                // Harus 10 digit
+                if (inputNrp.value.length != 10) {
+                    errorNrp.innerHTML += "Format NRP salah<br />"
+                    validation = false
+                }
+            }
+
+            // Nama
+            // Tidak boleh kosong
+            if (inputNama.value.length <= 0) {
+                errorNama.innerHTML += "Nama tidak boleh kosong<br />"
+                validation = false
+            }
+            // Tidak boleh mengandung angka
+            if (/\d/.test(inputNama.value)) {
+                errorNama.innerHTML += "Nama tidak boleh mengandung angka<br />"
+                validation = false
+            }
+
+            return validation;
+        }
+    </script>
+</body>
+
+</html>
